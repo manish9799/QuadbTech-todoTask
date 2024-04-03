@@ -16,7 +16,7 @@ Before you begin, ensure you have the following installed on your system:
 ### Installation
 
 1. Clone the repository to your local machine:
-   git clone https://github.com/your-username/todo-list-app.git
+   git clone https://github.com/manish9799/QuadbTech-todoTask.git
 
 2. Navigate to the project directory:
    cd todo-list-app
