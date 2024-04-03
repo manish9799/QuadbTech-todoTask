@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Box, Container, Typography } from '@mui/material';
+import { Box, Container, Typography, useMediaQuery } from '@mui/material';
 import TaskInput from './TaskInput';
 import TaskList from './TaskList';
 import { useDispatch, useSelector } from 'react-redux'; // Importing useDispatch and useSelector hooks
@@ -7,6 +7,7 @@ import { loadTasks } from './Redux/action'; // Importing the action creator to l
 
 const App = () => {
   const dispatch = useDispatch();
+  const isSmallScreen = useMediaQuery('(max-width:700px)');
 
   // Accessing tasks from Redux store state
   const tasks = useSelector(state => state.todoReducer.todoData);
@@ -28,7 +29,7 @@ const App = () => {
     <Container>
       <Box
         sx={{
-          width: '60%',
+          width: isSmallScreen? '90%':'60%',
           margin: '0 auto',
           backgroundColor: 'black',
           borderRadius: '20px',
@@ -39,7 +40,7 @@ const App = () => {
           mt: 2
         }}
       >
-        <Typography variant='h4' color='white' sx={{ mb: 2 }}>Your Todos</Typography>
+        <Typography  color='white' sx={{ mb: 2 ,fontSize:'2em'}}>Your Todos</Typography>
         <TaskInput/>
         <TaskList/>
       </Box>

@@ -35,7 +35,7 @@ const TaskList = () => {
         <Card
           sx={{ backgroundColor: 'black', border: '2px solid white', width: '90%', borderRadius: '20px', mt: 4, p: 2 }}>
           {todoList?.map((item, i) => (
-            <Stack key={i} direction={'row'} sx={{ borderBottom: '2px solid white', display: 'flex', alignItems: 'center', width: '90%', margin: '0 auto', justifyContent: 'space-between' }}>
+            <Stack key={i} direction={'row'} sx={{ borderBottom: '2px solid white', display: 'flex', alignItems: 'center', width: '98%', margin: '0 auto', justifyContent: 'space-between' }}>
               {/* Checkbox to toggle completion status */}
               <Checkbox
                 sx={{ color: 'white' }}
@@ -47,7 +47,7 @@ const TaskList = () => {
               <Typography
                 variant='h6'
                 color='white'
-                sx={{ textDecoration: item.completed ? 'line-through' : 'none' }}
+                sx={{ textDecoration: item.completed ? 'line-through' : 'none',fontSize:'1rem' }}
               >
                 {item?.value || "-"}
               </Typography>

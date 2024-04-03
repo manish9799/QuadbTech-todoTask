@@ -1,48 +1,53 @@
-import { Button, Stack, TextField } from '@mui/material'
-import React, { useState } from 'react'
+import { Button, Stack, TextField, useMediaQuery } from '@mui/material';
+import React, { useState } from 'react';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { useDispatch } from 'react-redux';
 import { addTodo } from './Redux/action';
 
 const TaskInput = () => {
-  const dispatch = useDispatch()
-  const [todoValue, setTodoValue] = useState("") // State to store the value of the todo input
+  const dispatch = useDispatch();
+  const [todoValue, setTodoValue] = useState("");
+  const isSmallScreen = useMediaQuery('(max-width:700px)');
 
-  // Function to add todo item
   const addData = () => {
-    if (todoValue.trim() !== "") { // Check if todoValue is not empty
-      dispatch(addTodo({ value: todoValue, completed: false })) // Dispatches an action to add todo item with value and completion status
-      setTodoValue("") // Clears the input field after adding todo
+    if (todoValue.trim() !== "") {
+      dispatch(addTodo({ value: todoValue, completed: false }));
+      setTodoValue("");
     }
-  }
+  };
 
-  // Function to handle form submission (when Enter key is pressed)
   const handleSubmit = (e) => {
-    e.preventDefault(); // Prevents default form submission behavior
-    addData(); // Calls addData function to add todo item
-  }
+    e.preventDefault();
+    addData();
+  };
 
   return (
-    <form onSubmit={handleSubmit}> {/* Form element to handle form submission */}
-      <Stack direction={'row'} >
-        {/* Text field for entering todo */}
+    <form onSubmit={handleSubmit}>
+      <Stack direction={isSmallScreen ? 'column' : 'row'} spacing={2}>
         <TextField
           placeholder='Add todo'
           value={todoValue}
-          fullWidth
-          onChange={(e) => setTodoValue(e.target.value)} // Updates todoValue state as the user types
+          fullWidth={isSmallScreen}
+          onChange={(e) => setTodoValue(e.target.value)}
           sx={{ backgroundColor: 'white', borderRadius: '10px' }}
         />
-        {/* Button to add todo */}
-        <Button type="submit" variant="contained" // Added type="submit" to trigger form submission
-          sx={{ ml: 2, borderRadius: '10px', width: '100px', fontSize: '16px' }}
+        <Button
+          type="submit"
+          variant="contained"
+          sx={{
+            ml: isSmallScreen ? 0 : 2,
+            mt: isSmallScreen ? 2 : 0,
+            borderRadius: '10px',
+            width: isSmallScreen ? '100%' : '100px',
+            fontSize: '16px',
+          }}
           startIcon={<AddCircleOutlineIcon />}
         >
           ADD
         </Button>
       </Stack>
     </form>
-  )
-}
+  );
+};
 
-export default TaskInput
+export default TaskInput;
